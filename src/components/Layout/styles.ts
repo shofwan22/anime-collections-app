@@ -11,6 +11,6 @@ export const styLayoutContent = css`
   padding: 120px 60px 40px 60px;
 
   @media (max-width: 992px) {
-    padding: 120px 16px 24px 16px;
+    padding: 80px 16px 24px 16px;
   }
 `;
