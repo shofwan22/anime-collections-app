@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+import { useModal } from '../../context/Modal';
 import useGetAnimeList from './hooks/useGetAnimeList';
 
 import Search from '../../components/Search';
@@ -11,11 +12,20 @@ import { QueryResponses } from './hooks/useGetAnimeList/types';
 import { styHomeContainer, styHomeAction } from './styles';
 
 const Home = () => {
+  const { showModal } = useModal();
   const { listAnime, page, hasNextPage, handleSearch, handlePage } =
     useGetAnimeList();
   const [dataSelected, setDataSelected] = useState<
     QueryResponses['Page']['media']
   >([]);
+
+  const handleBulkCollection = () => {
+    showModal({
+      title: 'Add To My Collection',
+      width: '500px',
+      content: <div>Halo</div>,
+    });
+  };
 
   return (
     <>
@@ -26,7 +36,11 @@ const Home = () => {
         {dataSelected.length > 0 && (
           <div className="home-action__right">
             <p className="text-selected">{dataSelected.length} Selected</p>
-            <Button label="Add Selected To List" iconRight="fa fa-plus" />
+            <Button
+              label="Add Selected To Collections"
+              iconRight="fa fa-plus"
+              onClick={handleBulkCollection}
+            />
           </div>
         )}
       </div>
