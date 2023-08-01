@@ -9,12 +9,14 @@ import { styHomeContainer, styHomeAction } from './styles';
 
 import { useModal } from '../../contexts/Modal';
 import { useCollection } from '../../contexts/Collection';
+import { useNotif } from '../../contexts/Notifications';
 import useGetAnimeList from './hooks/useGetAnimeList';
 
 import { QueryResponses } from './hooks/useGetAnimeList/types';
 
 const Home = () => {
   const { showModal, closeModal } = useModal();
+  const { showNotif } = useNotif();
   const { handleNewCollection, handleNewCollectionName } = useCollection();
   const { listAnime, page, hasNextPage, handleSearch, handlePage } =
     useGetAnimeList();
@@ -40,12 +42,20 @@ const Home = () => {
     handleNewCollection(id, dataSelected);
     closeModal();
     setDataSelected([]);
+    showNotif({
+      message: 'Success Add Anime to Collection',
+      type: 'success',
+    });
   };
 
   const handleSubmitCollectionName = (value: string) => {
     handleNewCollectionName(value, dataSelected);
     closeModal();
     setDataSelected([]);
+    showNotif({
+      message: 'Success Add Anime to New Collection',
+      type: 'success',
+    });
   };
 
   return (

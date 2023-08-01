@@ -7,6 +7,7 @@ import { styListContainer } from './styles';
 
 import { useModal } from '../../../../contexts/Modal';
 import { useCollection } from '../../../../contexts/Collection';
+import { useNotif } from '../../../../contexts/Notifications';
 
 import { CollectionItem } from '../../../../contexts/Collection/types';
 
@@ -20,6 +21,7 @@ const List = (props: ListProps) => {
   const { showModal, closeModal } = useModal();
   const { handleUpdateNameCollection, handleRemoveCollection } =
     useCollection();
+  const { showNotif } = useNotif();
 
   const handleDetail = (id: number) => {
     navigate(`/collection/${id}`);
@@ -43,6 +45,10 @@ const List = (props: ListProps) => {
   const handleEditCollectionName = (id: number, value: string) => {
     handleUpdateNameCollection(id, value);
     closeModal();
+    showNotif({
+      message: 'Success Edit Name Collection',
+      type: 'success',
+    });
   };
 
   const handleRemove = (data: CollectionItem) => {
@@ -61,6 +67,10 @@ const List = (props: ListProps) => {
   const handleConfirmRemove = (id: number) => {
     handleRemoveCollection(id);
     closeModal();
+    showNotif({
+      message: 'Success Remove Collection',
+      type: 'success',
+    });
   };
 
   return (

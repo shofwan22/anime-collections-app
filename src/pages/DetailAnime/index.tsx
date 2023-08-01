@@ -7,6 +7,7 @@ import { styDetailAnimeContainer, styListCollectionItem } from './styles';
 
 import { useModal } from '../../contexts/Modal';
 import { useCollection } from '../../contexts/Collection';
+import { useNotif } from '../../contexts/Notifications';
 import useGetDetailAnime from './hooks/useGetDetailAnime';
 import useGetCollectionsAnime from './hooks/useGetCollectionsAnime';
 
@@ -14,6 +15,7 @@ const Detail = () => {
   const navigate = useNavigate();
   const { showModal, closeModal } = useModal();
   const { handleNewCollectionBulk, handleNewCollectionName } = useCollection();
+  const { showNotif } = useNotif();
 
   const { detail } = useGetDetailAnime();
   const { handleCollectionsOfAnime } = useGetCollectionsAnime();
@@ -46,6 +48,10 @@ const Detail = () => {
     if (detail) {
       handleNewCollectionBulk(id, [detail]);
       closeModal();
+      showNotif({
+        message: 'Success Add Anime To Collections',
+        type: 'success',
+      });
     }
   };
 
@@ -53,6 +59,10 @@ const Detail = () => {
     if (detail) {
       handleNewCollectionName(value, [detail]);
       closeModal();
+      showNotif({
+        message: 'Success Add Anime To New Collection',
+        type: 'success',
+      });
     }
   };
 

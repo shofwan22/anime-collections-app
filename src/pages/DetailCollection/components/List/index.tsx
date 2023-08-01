@@ -5,6 +5,7 @@ import { styListContainer } from './styles';
 
 import { useModal } from '../../../../contexts/Modal';
 import { useCollection } from '../../../../contexts/Collection';
+import { useNotif } from '../../../../contexts/Notifications';
 
 import {
   Media,
@@ -22,6 +23,7 @@ const List = (props: ListProps) => {
   const params = useParams();
   const { showModal, closeModal } = useModal();
   const { handleRemoveAnimeFromCollection } = useCollection();
+  const { showNotif } = useNotif();
 
   const handleDetailAnime = (id: number) => {
     navigate(`/anime/${id}`);
@@ -43,6 +45,10 @@ const List = (props: ListProps) => {
   const handleConfirmRemove = (id: number) => {
     handleRemoveAnimeFromCollection(Number(params.id), id);
     closeModal();
+    showNotif({
+      message: 'Success Remove Anime From Collection',
+      type: 'success',
+    });
   };
 
   return (

@@ -1,7 +1,12 @@
 import { ReactNode } from 'react';
 import { cx } from '@emotion/css';
 
-import { styModalContainer, styModalBox, styModalWidth } from './styles';
+import {
+  styModalContainer,
+  styModalContent,
+  styModalBox,
+  styModalWidth,
+} from './styles';
 
 interface ModalProps {
   show?: boolean;
@@ -28,7 +33,7 @@ const Modal = (props: ModalProps) => {
               <h2>{title}</h2>
               <i className="fa fa-close icon-close" onClick={onClose}></i>
             </div>
-            <div>{children}</div>
+            <div className={styModalContent}>{children}</div>
           </div>
         </div>
       )}

@@ -23,6 +23,11 @@ export const styModalContainer = css`
   }
 `;
 
+export const styModalContent = css`
+  overflow: scroll;
+  max-height: 500px;
+`;
+
 export const styModalWidth = (width: string) => css`
   width: ${width};
 `;

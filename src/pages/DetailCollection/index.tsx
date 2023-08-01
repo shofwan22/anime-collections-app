@@ -9,6 +9,7 @@ import {
 
 import { useModal } from '../../contexts/Modal';
 import { useCollection } from '../../contexts/Collection';
+import { useNotif } from '../../contexts/Notifications';
 import useGetDetailCollection from './hooks/useGetDetailCollection';
 
 import { CollectionItem } from '../../contexts/Collection/types';
@@ -17,6 +18,7 @@ const DetailCollection = () => {
   const { detail } = useGetDetailCollection();
   const { showModal, closeModal } = useModal();
   const { handleUpdateNameCollection } = useCollection();
+  const { showNotif } = useNotif();
 
   const handleEdit = (data: CollectionItem | null) => {
     if (data) {
@@ -38,6 +40,10 @@ const DetailCollection = () => {
   const handleEditCollectionName = (id: number, value: string) => {
     handleUpdateNameCollection(id, value);
     closeModal();
+    showNotif({
+      message: 'Success Edit Name Collection',
+      type: 'success',
+    });
   };
 
   return (

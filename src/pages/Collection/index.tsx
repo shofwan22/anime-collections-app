@@ -5,11 +5,13 @@ import { styCollectionContainer, styCollectionAction } from './styles';
 
 import { useCollection } from '../../contexts/Collection';
 import { useModal } from '../../contexts/Modal';
+import { useNotif } from '../../contexts/Notifications';
 import FormCollectionName from '../../components/ModalCollection/FormCollectionName';
 
 const Collection = () => {
   const { collections, handleNewCollectionName } = useCollection();
   const { showModal, closeModal } = useModal();
+  const { showNotif } = useNotif();
 
   const handleNewCollection = () => {
     showModal({
@@ -28,6 +30,10 @@ const Collection = () => {
   const handleSaveCollectionName = (value: string) => {
     handleNewCollectionName(value, []);
     closeModal();
+    showNotif({
+      message: 'Success Create New Collection',
+      type: 'success',
+    });
   };
 
   return (
