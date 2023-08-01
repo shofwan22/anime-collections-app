@@ -2,13 +2,19 @@ import { useNavigate } from 'react-router-dom';
 
 import Pill from '../../components/Base/Pill';
 import Button from '../../components/Base/Button';
+import FormCollection from '../../components/ModalCollection/FormCollection';
 import { styDetailAnimeContainer, styListCollectionItem } from './styles';
 
+import { useModal } from '../../contexts/Modal';
+import { useCollection } from '../../contexts/Collection';
 import useGetDetailAnime from './hooks/useGetDetailAnime';
 import useGetCollectionsAnime from './hooks/useGetCollectionsAnime';
 
 const Detail = () => {
   const navigate = useNavigate();
+  const { showModal, closeModal } = useModal();
+  const { handleNewCollectionBulk, handleNewCollectionName } = useCollection();
+
   const { detail } = useGetDetailAnime();
   const { handleCollectionsOfAnime } = useGetCollectionsAnime();
   const dataCollections = handleCollectionsOfAnime();
@@ -17,7 +23,38 @@ const Detail = () => {
     navigate(`/collection/${id}`);
   };
 
-  const handleBulkCollection = () => {};
+  const handleBulkCollection = () => {
+    if (detail) {
+      showModal({
+        title: 'Add To My Collection',
+        width: '500px',
+        content: (
+          <FormCollection
+            typeBulk="collection"
+            dataSelected={[detail]}
+            onSelectBulkCollection={(id) => handleSelectBulkCollection(id)}
+            onSubmitCollectionName={(value) =>
+              handleSubmitCollectionName(value)
+            }
+          />
+        ),
+      });
+    }
+  };
+
+  const handleSelectBulkCollection = (id: number[]) => {
+    if (detail) {
+      handleNewCollectionBulk(id, [detail]);
+      closeModal();
+    }
+  };
+
+  const handleSubmitCollectionName = (value: string) => {
+    if (detail) {
+      handleNewCollectionName(value, [detail]);
+      closeModal();
+    }
+  };
 
   return (
     <>

@@ -1,21 +1,34 @@
 import { useState } from 'react';
 
 import FormSelectCollection from '../FormSelectCollection';
-import FormCollectionName from '../FormCollectionName';
+import FormBulkCollection from '../FormBulkCollection';
+import FormBulkAnime from '../FormCollectionName';
 import { QueryResponses } from '../../../pages/Home/hooks/useGetAnimeList/types';
 
 interface FormCollectionProps {
+  typeBulk?: string;
   dataSelected?: QueryResponses['Page']['media'];
-  onSelectCollection: (id: number) => void;
+  onSelectCollection?: (id: number) => void;
+  onSelectBulkCollection?: (id: number[]) => void;
   onSubmitCollectionName: (value: string) => void;
 }
 
 const FormCollection = (props: FormCollectionProps) => {
-  const { dataSelected, onSelectCollection, onSubmitCollectionName } = props;
+  const {
+    typeBulk,
+    dataSelected,
+    onSelectCollection,
+    onSelectBulkCollection,
+    onSubmitCollectionName,
+  } = props;
   const [formCollectionName, setFormCollectionName] = useState(false);
 
   const handleSelectCollection = (id: number) => {
-    onSelectCollection(id);
+    if (onSelectCollection) onSelectCollection(id);
+  };
+
+  const handleBulkSelectCollection = (id: number[]) => {
+    if (onSelectBulkCollection) onSelectBulkCollection(id);
   };
 
   const handleSubmitCollectionName = (value: string) => {
@@ -28,7 +41,7 @@ const FormCollection = (props: FormCollectionProps) => {
 
   return (
     <>
-      {!formCollectionName && (
+      {!formCollectionName && !typeBulk && (
         <FormSelectCollection
           dataSelected={dataSelected}
           onSelectCollection={(id) => handleSelectCollection(id)}
@@ -36,8 +49,16 @@ const FormCollection = (props: FormCollectionProps) => {
         />
       )}
 
+      {!formCollectionName && typeBulk === 'collection' && (
+        <FormBulkCollection
+          dataSelected={dataSelected}
+          onSubmitCollection={(id) => handleBulkSelectCollection(id)}
+          onCollectionName={(value) => setFormCollectionName(value)}
+        />
+      )}
+
       {formCollectionName && (
-        <FormCollectionName
+        <FormBulkAnime
           type="add"
           onSubmit={(value) => handleSubmitCollectionName(value)}
           onCancel={handleCancelCollectionName}

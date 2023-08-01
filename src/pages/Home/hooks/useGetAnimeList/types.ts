@@ -18,7 +18,6 @@ export interface Media {
   id: number;
   title: Title;
   coverImage: CoverImage;
-  types: string;
   format: string;
   genres: string[];
   averageScore: number;

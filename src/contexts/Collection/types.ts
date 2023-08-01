@@ -9,6 +9,7 @@ export interface CollectionItem {
 export interface CollectionValue {
   collections: CollectionItem[];
   handleNewCollection: (id: number, value: Media[]) => void;
+  handleNewCollectionBulk: (id: number[], value: Media[]) => void;
   handleNewCollectionName: (name: string, value: Media[]) => void;
   handleUpdateNameCollection: (id: number, value: string) => void;
   handleRemoveCollection: (id: number) => void;

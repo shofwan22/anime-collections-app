@@ -12,6 +12,7 @@ import { Media } from '../../pages/Home/hooks/useGetAnimeList/types';
 const Collection = createContext<CollectionValue>({
   collections: [],
   handleNewCollection: () => {},
+  handleNewCollectionBulk: () => {},
   handleNewCollectionName: () => {},
   handleUpdateNameCollection: () => {},
   handleRemoveCollection: () => {},
@@ -41,6 +42,23 @@ const CollectionProvider = ({ children }: PropsWithChildren<unknown>) => {
       newData[findIndexCollection].list = mergedData;
       setDataCollections(newData);
     }
+  };
+
+  const handleNewCollectionBulk = (id: number[], value: Media[]) => {
+    id.forEach((item) => {
+      const findIndexCollection = collections.findIndex(
+        (find) => find.id === item
+      );
+
+      if (findIndexCollection > -1) {
+        const newData = [...collections];
+        newData[findIndexCollection].list = [
+          ...newData[findIndexCollection].list,
+          ...value,
+        ];
+        setDataCollections(newData);
+      }
+    });
   };
 
   const handleNewCollectionName = (name: string, value: Media[] | []) => {
@@ -109,6 +127,7 @@ const CollectionProvider = ({ children }: PropsWithChildren<unknown>) => {
       value={{
         collections,
         handleNewCollection,
+        handleNewCollectionBulk,
         handleNewCollectionName,
         handleUpdateNameCollection,
         handleRemoveCollection,

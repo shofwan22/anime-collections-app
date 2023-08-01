@@ -8,14 +8,14 @@ import Button from '../../Base/Button';
 import { CollectionItem } from '../../../contexts/Collection/types';
 import useValidationForm from '../../../hooks/UseValidationForm';
 
-interface FormCollectionNameProps {
+interface FormBulkAnimeProps {
   type: string;
   data?: CollectionItem;
   onSubmit: (value: string) => void;
   onCancel: () => void;
 }
 
-const FormCollectionName = (props: FormCollectionNameProps) => {
+const FormBulkAnime = (props: FormBulkAnimeProps) => {
   const { type, data, onSubmit, onCancel } = props;
   const { handleValidationSpecialChar, handleValidationUniqeName } =
     useValidationForm();
@@ -97,4 +97,4 @@ const FormCollectionName = (props: FormCollectionNameProps) => {
   );
 };
 
-export default FormCollectionName;
+export default FormBulkAnime;
