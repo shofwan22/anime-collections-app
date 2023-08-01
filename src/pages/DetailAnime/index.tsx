@@ -1,10 +1,23 @@
+import { useNavigate } from 'react-router-dom';
+
 import Pill from '../../components/Base/Pill';
-import { styDetailAnimeContainer } from './styles';
+import Button from '../../components/Base/Button';
+import { styDetailAnimeContainer, styListCollectionItem } from './styles';
 
 import useGetDetailAnime from './hooks/useGetDetailAnime';
+import useGetCollectionsAnime from './hooks/useGetCollectionsAnime';
 
 const Detail = () => {
+  const navigate = useNavigate();
   const { detail } = useGetDetailAnime();
+  const { handleCollectionsOfAnime } = useGetCollectionsAnime();
+  const dataCollections = handleCollectionsOfAnime();
+
+  const handleDetailCollection = (id: number) => {
+    navigate(`/collection/${id}`);
+  };
+
+  const handleBulkCollection = () => {};
 
   return (
     <>
@@ -12,6 +25,11 @@ const Detail = () => {
         <div className={styDetailAnimeContainer}>
           <div className="detail-image">
             <img src={detail?.coverImage?.extraLarge} alt="cover" />
+            <Button
+              label="Add To Collections"
+              iconRight="fa fa-plus"
+              onClick={handleBulkCollection}
+            />
           </div>
           <div className="detail-content">
             <h1>{detail?.title?.romaji}</h1>
@@ -29,6 +47,22 @@ const Detail = () => {
               className="detail-content__description"
               dangerouslySetInnerHTML={{ __html: detail?.description }}
             ></div>
+            {dataCollections.length > 0 && (
+              <div className="detail-content__collections">
+                <h2>Collections</h2>
+                {dataCollections.map((item) => {
+                  return (
+                    <div
+                      key={item.id}
+                      className={styListCollectionItem}
+                      onClick={() => handleDetailCollection(item.id)}
+                    >
+                      <span className="collection-name">{item.name}</span>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
           </div>
         </div>
       )}
