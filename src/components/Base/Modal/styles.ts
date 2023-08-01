@@ -35,6 +35,9 @@ export const styModalBox = css`
 
   .modal-header {
     padding: 1rem 1rem 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+
     h2 {
       margin-top: 0;
       margin-bottom: 0;

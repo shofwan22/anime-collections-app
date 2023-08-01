@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 import { styInputContainer } from './styles';
 
 interface InputProps {
@@ -10,10 +8,8 @@ interface InputProps {
 
 const Input = (props: InputProps) => {
   const { value, placeholder, onChangeValue } = props;
-  const [newValue, setNewValue] = useState(value);
 
   const handleChangeValue = (value: string) => {
-    setNewValue(value);
     if (onChangeValue) {
       onChangeValue(value);
     }
@@ -23,7 +19,7 @@ const Input = (props: InputProps) => {
     <div className={styInputContainer}>
       <input
         type="text"
-        value={newValue}
+        value={value}
         placeholder={placeholder}
         onChange={(e) => handleChangeValue(e.target.value)}
       />
