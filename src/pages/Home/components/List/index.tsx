@@ -27,7 +27,7 @@ const List = (props: ListProps) => {
   const navigate = useNavigate();
 
   const handleDetail = (id: number) => {
-    navigate(`/detail/${id}`);
+    navigate(`/anime/${id}`);
   };
 
   const handleBookmark = (bookmark: boolean, item: Media) => {
