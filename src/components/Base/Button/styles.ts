@@ -20,7 +20,7 @@ export const styButtonContainer = (bgColor: string) => css`
     margin-right: 8px;
   }
 
-  .button-disabled {
+  &.button-disabled {
     opacity: 0.7;
     cursor: not-allowed;
   }

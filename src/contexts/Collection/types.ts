@@ -3,7 +3,7 @@ import { Media } from '../../pages/Home/hooks/useGetAnimeList/types';
 export interface CollectionItem {
   id: number;
   name: string;
-  collections: Media[];
+  list: Media[];
 }
 
 export interface CollectionValue {

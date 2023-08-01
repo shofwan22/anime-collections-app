@@ -1,18 +1,21 @@
 import { useState } from 'react';
 
-import { useModal } from '../../contexts/Modal';
-import useGetAnimeList from './hooks/useGetAnimeList';
-
 import Search from '../../components/Search';
 import Button from '../../components/Base/Button';
 import List from './components/List';
-
-import { QueryResponses } from './hooks/useGetAnimeList/types';
+import FormCollection from '../../components/ModalCollection/FormCollection';
 
 import { styHomeContainer, styHomeAction } from './styles';
 
+import { useModal } from '../../contexts/Modal';
+import { useCollection } from '../../contexts/Collection';
+import useGetAnimeList from './hooks/useGetAnimeList';
+
+import { QueryResponses } from './hooks/useGetAnimeList/types';
+
 const Home = () => {
-  const { showModal } = useModal();
+  const { showModal, closeModal } = useModal();
+  const { handleNewCollection, handleNewCollectionName } = useCollection();
   const { listAnime, page, hasNextPage, handleSearch, handlePage } =
     useGetAnimeList();
   const [dataSelected, setDataSelected] = useState<
@@ -23,8 +26,26 @@ const Home = () => {
     showModal({
       title: 'Add To My Collection',
       width: '500px',
-      content: <div>Halo</div>,
+      content: (
+        <FormCollection
+          dataSelected={dataSelected}
+          onSelectCollection={(id) => handleSelectCollection(id)}
+          onSubmitCollectionName={(value) => handleSubmitCollectionName(value)}
+        />
+      ),
     });
+  };
+
+  const handleSelectCollection = (id: number) => {
+    handleNewCollection(id, dataSelected);
+    closeModal();
+    setDataSelected([]);
+  };
+
+  const handleSubmitCollectionName = (value: string) => {
+    handleNewCollectionName(value, dataSelected);
+    closeModal();
+    setDataSelected([]);
   };
 
   return (

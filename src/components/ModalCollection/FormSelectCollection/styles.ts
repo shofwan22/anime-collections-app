@@ -42,3 +42,12 @@ export const styListCollectionItem = css`
     }
   }
 `;
+
+export const styListCollectionItemDisabled = css`
+  opacity: 0.6;
+  cursor: not-allowed;
+
+  &:hover {
+    box-shadow: 0 5px 7px -1px rgba(51, 51, 51, 0.23);
+  }
+`;

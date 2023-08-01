@@ -29,15 +29,15 @@ const CollectionProvider = ({ children }: PropsWithChildren<unknown>) => {
     const findIndexCollection = collections.findIndex((item) => item.id === id);
     if (findIndexCollection > -1) {
       const ids = new Set(
-        collections[findIndexCollection].collections.map((d) => d.id)
+        collections[findIndexCollection].list.map((d) => d.id)
       );
       const mergedData = [
-        ...collections[findIndexCollection].collections,
+        ...collections[findIndexCollection].list,
         ...value.filter((d) => !ids.has(d.id)),
       ];
 
       const newData = [...collections];
-      newData[findIndexCollection].collections = mergedData;
+      newData[findIndexCollection].list = mergedData;
       setDataCollections(newData);
     }
   };
@@ -47,7 +47,7 @@ const CollectionProvider = ({ children }: PropsWithChildren<unknown>) => {
       id:
         collections.length > 0 ? collections[collections.length - 1].id + 1 : 1,
       name: name,
-      collections: value,
+      list: value,
     };
     if (collections.length === 0) {
       setDataCollections([newData]);
