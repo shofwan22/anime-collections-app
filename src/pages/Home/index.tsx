@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { useModal } from '../../context/Modal';
+import { useModal } from '../../contexts/Modal';
 import useGetAnimeList from './hooks/useGetAnimeList';
 
 import Search from '../../components/Search';

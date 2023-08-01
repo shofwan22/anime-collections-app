@@ -3,9 +3,9 @@ import { PropsWithChildren } from 'react';
 import { styLayoutContainer, styLayoutContent } from './styles';
 
 import Header from '../Header';
-import { LoaderProvider } from '../../context/Loader';
-import { ModalProvider } from '../../context/Modal';
-import { CollectionProvider } from '../../context/Collection';
+import { LoaderProvider } from '../../contexts/Loader';
+import { ModalProvider } from '../../contexts/Modal';
+import { CollectionProvider } from '../../contexts/Collection';
 
 const Layout = ({ children }: PropsWithChildren<unknown>) => {
   return (

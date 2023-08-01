@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 
-import { useLoader } from '../../../../context/Loader';
+import { useLoader } from '../../../../contexts/Loader';
 
 import { GET_ANIME_LIST } from './query';
 

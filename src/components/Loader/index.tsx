@@ -1,6 +1,6 @@
 import { styLoaderContainer, styLoaderInner } from './styles';
 
-import { useLoader } from '../../context/Loader';
+import { useLoader } from '../../contexts/Loader';
 
 const Loader = () => {
   const { loader } = useLoader();
