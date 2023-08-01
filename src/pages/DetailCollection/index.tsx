@@ -10,7 +10,6 @@ import useGetDetailCollection from './hooks/useGetDetailCollection';
 
 const DetailCollection = () => {
   const { detail } = useGetDetailCollection();
-  console.log(detail);
 
   return (
     <div className={styDetailCollectionContainer}>

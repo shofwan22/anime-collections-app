@@ -12,4 +12,8 @@ export interface CollectionValue {
   handleNewCollectionName: (name: string, value: Media[]) => void;
   handleUpdateNameCollection: (id: number, value: string) => void;
   handleRemoveCollection: (id: number) => void;
+  handleRemoveAnimeFromCollection: (
+    idCollection: number,
+    idAnime: number
+  ) => void;
 }

@@ -15,6 +15,7 @@ const Collection = createContext<CollectionValue>({
   handleNewCollectionName: () => {},
   handleUpdateNameCollection: () => {},
   handleRemoveCollection: () => {},
+  handleRemoveAnimeFromCollection: () => {},
 });
 
 const CollectionProvider = ({ children }: PropsWithChildren<unknown>) => {
@@ -75,6 +76,27 @@ const CollectionProvider = ({ children }: PropsWithChildren<unknown>) => {
     }
   };
 
+  const handleRemoveAnimeFromCollection = (
+    idCollection: number,
+    idAnime: number
+  ) => {
+    const findIndexCollection = collections.findIndex(
+      (item) => item.id === idCollection
+    );
+
+    if (findIndexCollection > -1) {
+      const newData = [...collections];
+      const findIndexAnime = newData[findIndexCollection].list.findIndex(
+        (item) => item.id === idAnime
+      );
+
+      if (findIndexAnime > -1) {
+        newData[findIndexCollection].list.splice(findIndexAnime, 1);
+        setDataCollections(newData);
+      }
+    }
+  };
+
   useEffect(() => {
     const getLocalStorage = localStorage.getItem('LIST_COLLECTIONS');
     if (getLocalStorage) {
@@ -90,6 +112,7 @@ const CollectionProvider = ({ children }: PropsWithChildren<unknown>) => {
         handleNewCollectionName,
         handleUpdateNameCollection,
         handleRemoveCollection,
+        handleRemoveAnimeFromCollection,
       }}
     >
       {children}
