@@ -53,6 +53,14 @@ export const styCardContainer = css`
     display: flex;
     align-items: center;
     justify-content: center;
+
+    .dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 100%;
+      background-color: gray;
+      margin: 0px 8px;
+    }
   }
 
   &:hover {
@@ -76,9 +84,6 @@ export const styCardContainer = css`
 
     div {
       width: 100%;
-      &:first-child {
-        margin-right: 8px;
-      }
     }
 
     @media (max-width: 480px) {

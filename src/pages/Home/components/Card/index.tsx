@@ -40,8 +40,12 @@ const Card = (props: CardProps) => {
         <h2>{data.title.romaji}</h2>
         <div className="card-content__text">
           <span>{data.format}</span>
-          <div className="dot"></div>
-          <span>{data.averageScore} %</span>
+          {data.averageScore && (
+            <>
+              <div className="dot"></div>
+              <span>{data.averageScore} %</span>
+            </>
+          )}
         </div>
         <div className="card-content__genre">
           {data.genres.map((item, index) => {

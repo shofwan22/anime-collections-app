@@ -1,14 +1,14 @@
 import { useNavigate } from 'react-router-dom';
 
 import Card from '../Card';
+import FormCollectionName from '../../../../components/ModalCollection/FormCollectionName';
+import FormCollectionRemove from '../../../../components/ModalCollection/FormCollectionRemove';
 import { styListContainer } from './styles';
 
 import { useModal } from '../../../../contexts/Modal';
 import { useCollection } from '../../../../contexts/Collection';
 
 import { CollectionItem } from '../../../../contexts/Collection/types';
-import FormCollectionName from '../../../../components/ModalCollection/FormCollectionName';
-import FormCollectionRemove from '../../../../components/ModalCollection/FormCollectionRemove';
 
 interface ListProps {
   data: CollectionItem[];

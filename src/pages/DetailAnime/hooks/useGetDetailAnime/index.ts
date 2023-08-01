@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
 import { useLoader } from '../../../../contexts/Loader';
@@ -10,8 +10,10 @@ import { GET_DETAIL_ANIME } from './query';
 
 const useGetDetailAnime = () => {
   const params = useParams();
-  const dataId = Number(params?.id) || 0;
+  const navigate = useNavigate();
   const { showLoader } = useLoader();
+
+  const dataId = Number(params?.id) || 0;
 
   const { loading, error, data } = useQuery<QueryResponses, QueryVariables>(
     GET_DETAIL_ANIME,
@@ -23,11 +25,15 @@ const useGetDetailAnime = () => {
     }
   );
 
+  const result: Media | null = data?.Media || null;
+
   useEffect(() => {
     showLoader(loading);
-  }, [showLoader, loading]);
+    if (!loading && !result) {
+      navigate(-1);
+    }
+  }, [showLoader, loading, navigate, result]);
 
-  const result: Media | null = data?.Media || null;
   return {
     loading,
     error,
