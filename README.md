@@ -29,3 +29,9 @@ Build the application for production:
 ```bash
 npm run build
 ```
+
+## Unit Test
+To run unit test:
+```bash
+npm run test
+```

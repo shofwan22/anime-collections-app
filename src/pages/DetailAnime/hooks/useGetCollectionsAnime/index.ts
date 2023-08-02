@@ -6,6 +6,7 @@ const useGetCollectionsAnime = () => {
   const params = useParams();
   const { collections } = useCollection();
 
+  // This function is used to get collection data from an anime detail
   const handleCollectionsOfAnime = () => {
     const dataId = Number(params?.id) || null;
     const animeIdToFind = dataId;

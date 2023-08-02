@@ -30,6 +30,7 @@ const List = (props: ListProps) => {
     navigate(`/anime/${id}`);
   };
 
+  // This function to handle select data bookmark of anime
   const handleBookmark = (bookmark: boolean, item: Media) => {
     if (bookmark) {
       const result = [...dataSelected, item];

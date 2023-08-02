@@ -23,6 +23,7 @@ const useGetAnimeList = () => {
     setKeyword(query);
   };
 
+  // To handle get data list anime from graphql
   const { loading, error, data } = useQuery<QueryResponses, QueryVariables>(
     GET_ANIME_LIST,
     {

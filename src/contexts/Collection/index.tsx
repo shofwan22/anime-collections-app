@@ -28,6 +28,7 @@ const CollectionProvider = ({ children }: PropsWithChildren<unknown>) => {
   };
 
   const handleNewCollection = (id: number, value: Media[]) => {
+    // This function is used to add new anime bulk data to a collection
     const findIndexCollection = collections.findIndex((item) => item.id === id);
     if (findIndexCollection > -1) {
       const ids = new Set(
@@ -45,6 +46,7 @@ const CollectionProvider = ({ children }: PropsWithChildren<unknown>) => {
   };
 
   const handleNewCollectionBulk = (id: number[], value: Media[]) => {
+    // This function is used to add new anime data to bulk collections
     id.forEach((item) => {
       const findIndexCollection = collections.findIndex(
         (find) => find.id === item
@@ -62,6 +64,7 @@ const CollectionProvider = ({ children }: PropsWithChildren<unknown>) => {
   };
 
   const handleNewCollectionName = (name: string, value: Media[] | []) => {
+    // This function is used to add a new collection name as well as add data for the selected anime
     const newData = {
       id:
         collections.length > 0 ? collections[collections.length - 1].id + 1 : 1,
@@ -77,6 +80,7 @@ const CollectionProvider = ({ children }: PropsWithChildren<unknown>) => {
   };
 
   const handleUpdateNameCollection = (id: number, value: string) => {
+    // This function is used to rename a collection
     const findIndexCollection = collections.findIndex((item) => item.id === id);
     if (findIndexCollection > -1) {
       const newData = [...collections];
@@ -86,6 +90,7 @@ const CollectionProvider = ({ children }: PropsWithChildren<unknown>) => {
   };
 
   const handleRemoveCollection = (id: number) => {
+    // This function is used to delete a collection
     const findIndexCollection = collections.findIndex((item) => item.id === id);
     if (findIndexCollection > -1) {
       const newData = [...collections];
@@ -98,6 +103,7 @@ const CollectionProvider = ({ children }: PropsWithChildren<unknown>) => {
     idCollection: number,
     idAnime: number
   ) => {
+    // This function is used to delete anime data from a collection
     const findIndexCollection = collections.findIndex(
       (item) => item.id === idCollection
     );

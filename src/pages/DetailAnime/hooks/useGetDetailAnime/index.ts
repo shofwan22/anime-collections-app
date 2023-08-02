@@ -15,6 +15,7 @@ const useGetDetailAnime = () => {
 
   const dataId = Number(params?.id) || 0;
 
+  // To handle get data detail anime from graphql
   const { loading, error, data } = useQuery<QueryResponses, QueryVariables>(
     GET_DETAIL_ANIME,
     {
