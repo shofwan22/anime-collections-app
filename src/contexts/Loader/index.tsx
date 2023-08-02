@@ -4,7 +4,7 @@ import LoaderComponent from '../../components/Loader';
 
 import { LoaderValue } from './types';
 
-const Loader = createContext<LoaderValue>({
+export const LoaderContext = createContext<LoaderValue>({
   loader: false,
   showLoader: () => {},
 });
@@ -17,15 +17,15 @@ const LoaderProvider = ({ children }: PropsWithChildren) => {
   };
 
   return (
-    <Loader.Provider value={{ loader, showLoader }}>
+    <LoaderContext.Provider value={{ loader, showLoader }}>
       {children}
       <LoaderComponent />
-    </Loader.Provider>
+    </LoaderContext.Provider>
   );
 };
 
 const useLoader = () => {
-  const context = useContext(Loader);
+  const context = useContext(LoaderContext);
   if (context === undefined) {
     throw new Error('useLoader must be used within a LoaderProvider');
   }
