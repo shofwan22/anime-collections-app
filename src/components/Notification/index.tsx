@@ -13,14 +13,14 @@ const Notification = (props: NotificationProps) => {
   const { type, message } = props;
   const { notif } = useNotif();
 
-  let typeColor =
-    type === 'success' ? '#28a745!important' : '#dc3545!important';
+  let typeColor = type === 'success' ? '#28a745' : '#dc3545';
 
   return (
     <div
       className={cx(styNotifContainer, styTypeNotif(typeColor), {
         [styShowNotif]: notif,
       })}
+      data-testid="notifications"
     >
       {message}
     </div>

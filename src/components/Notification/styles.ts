@@ -1,7 +1,7 @@
 import { css } from '@emotion/css';
 
 export const styTypeNotif = (type: string) => css`
-  background-color: ${type};
+  background-color: ${type} !important;
 `;
 
 export const styNotifContainer = css`

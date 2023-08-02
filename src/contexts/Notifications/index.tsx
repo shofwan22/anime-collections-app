@@ -10,7 +10,7 @@ import Notification from '../../components/Notification';
 
 import { NotifValue, NotifParams } from './types';
 
-const NotifContext = createContext<NotifValue>({
+export const NotifContext = createContext<NotifValue>({
   notif: false,
   showNotif: () => {},
 });
