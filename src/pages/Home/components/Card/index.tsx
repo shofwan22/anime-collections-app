@@ -51,7 +51,9 @@ const Card = (props: CardProps) => {
           {data.genres.map((item, index) => {
             return index < 2 && <Pill key={index} name={item} />;
           })}
-          {data.genres.length > 2 && <span>+{data.genres.length - 2}</span>}
+          {data.genres.length > 2 && (
+            <Pill name={`+ ${data.genres.length - 2}`} />
+          )}
         </div>
       </div>
     </div>
