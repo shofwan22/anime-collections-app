@@ -10,7 +10,7 @@ import Notification from '../../components/Notification';
 
 import { NotifValue, NotifParams } from './types';
 
-const Notif = createContext<NotifValue>({
+const NotifContext = createContext<NotifValue>({
   notif: false,
   showNotif: () => {},
 });
@@ -35,15 +35,15 @@ const NotifProvider = ({ children }: PropsWithChildren) => {
   }, [notif]);
 
   return (
-    <Notif.Provider value={{ notif, showNotif }}>
+    <NotifContext.Provider value={{ notif, showNotif }}>
       {children}
       <Notification type={type} message={message} />
-    </Notif.Provider>
+    </NotifContext.Provider>
   );
 };
 
 const useNotif = () => {
-  const context = useContext(Notif);
+  const context = useContext(NotifContext);
   if (context === undefined) {
     throw new Error('useNotif must be used within a NotifProvider');
   }

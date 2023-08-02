@@ -4,7 +4,7 @@ import ModalComponent from '../../components/Base/Modal';
 
 import { ModalParams, ModalValue } from './types';
 
-const Modal = createContext<ModalValue>({
+const ModalContext = createContext<ModalValue>({
   modal: false,
   showModal: () => {},
   closeModal: () => {},
@@ -30,7 +30,7 @@ const ModalProvider = ({ children }: PropsWithChildren) => {
   };
 
   return (
-    <Modal.Provider value={{ modal, showModal, closeModal }}>
+    <ModalContext.Provider value={{ modal, showModal, closeModal }}>
       {children}
       <ModalComponent
         show={modal}
@@ -40,12 +40,12 @@ const ModalProvider = ({ children }: PropsWithChildren) => {
       >
         {content}
       </ModalComponent>
-    </Modal.Provider>
+    </ModalContext.Provider>
   );
 };
 
 const useModal = () => {
-  const context = useContext(Modal);
+  const context = useContext(ModalContext);
   if (context === undefined) {
     throw new Error('useLoader must be used within a LoaderProvider');
   }

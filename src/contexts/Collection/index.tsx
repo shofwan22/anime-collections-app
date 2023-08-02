@@ -9,7 +9,7 @@ import {
 import { CollectionValue, CollectionItem } from './types';
 import { Media } from '../../pages/Home/hooks/useGetAnimeList/types';
 
-const Collection = createContext<CollectionValue>({
+const CollectionContext = createContext<CollectionValue>({
   collections: [],
   handleNewCollection: () => {},
   handleNewCollectionBulk: () => {},
@@ -123,7 +123,7 @@ const CollectionProvider = ({ children }: PropsWithChildren<unknown>) => {
   }, []);
 
   return (
-    <Collection.Provider
+    <CollectionContext.Provider
       value={{
         collections,
         handleNewCollection,
@@ -135,12 +135,12 @@ const CollectionProvider = ({ children }: PropsWithChildren<unknown>) => {
       }}
     >
       {children}
-    </Collection.Provider>
+    </CollectionContext.Provider>
   );
 };
 
 const useCollection = () => {
-  const context = useContext(Collection);
+  const context = useContext(CollectionContext);
   if (context === undefined) {
     throw new Error('useCollection must be used within a CollectionProvider');
   }
